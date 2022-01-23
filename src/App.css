@@ -6,6 +6,7 @@
   font-family: var(--font-family);
 }
 
+
 /* Section margin and padding */
 .section__padding {
   padding: 4rem 6rem 0 6rem;
@@ -22,14 +23,19 @@
   padding: 2rem;
 }
 
+
+.lightText {
+  color: #fff;
+}
+
 /* link design undone */
 a {
   text-decoration: none;
   color: unset;
 }
 
-.lightText {
-  color: #fff;
+button{
+  cursor: pointer;
 }
 
 /* media queries */

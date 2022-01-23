@@ -30,6 +30,33 @@ export const getallProducts = (keyword = '', ratings = 0, gte = 1, lte = 26009, 
 }
 
 
+
+
+// admin edit product
+
+export const adminEditProduct = (value, productId) => async (dispatch) => {
+  try {
+    dispatch({ type: "EDIT_PRODUCT_PENDING" })
+    const { data } = await authaxios.put(`admin/product/${productId}`, value);
+    dispatch({ type: "EDIT_PRODUCT_FULFILLED", payload: data.success })
+
+  } catch (error) {
+    dispatch({ type: "EDIT_PRODUCT_REJECTED", payload: error.response.data.message })
+  }
+}
+
+export const adminDeleteProduct = (productId) => async (dispatch) => {
+  try {
+    dispatch({ type: "EDIT_PRODUCT_PENDING" })
+    const { data } = await authaxios.delete(`admin/product/${productId}`);
+    dispatch({ type: "EDIT_PRODUCT_FULFILLED", payload: data.success })
+
+  } catch (error) {
+    dispatch({ type: "EDIT_PRODUCT_REJECTED", payload: error.response.data.message })
+  }
+}
+
+
 // admin get all product
 export const getAdminProduct = () => async (dispatch) => {
   console.log('...logging')

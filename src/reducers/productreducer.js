@@ -93,3 +93,38 @@ export const getSingleProduct = (state = {}, action) => {
       return state;
   }
 }
+
+
+// edit product - admin
+
+export const getgood = (state = {
+  product: {}
+}, action) => {
+  switch (action.type) {
+    case 'EDIT_PRODUCT_PENDING':
+      return {
+        ...state,
+        loading: true,
+      }
+    case 'EDIT_PRODUCT_FULFILLED':
+      return {
+        ...state,
+        loading: false,
+        success: true,
+      }
+    case "RESET_SUCCESS":
+      return {
+        ...state,
+        success: null,
+      }
+    case 'EDIT_PRODUCT_REJECTED':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      }
+
+    default:
+      return state;
+  }
+}
