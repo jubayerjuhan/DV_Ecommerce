@@ -14,7 +14,7 @@ const AdminPanelSidebar = () => {
   return (
     <div className="admin__panel-nav">
       {adminLinks.map((adminLink, index) => (
-        <Link to={`/admin${adminLink.link}`}>
+        <Link to={`/admin${adminLink.link}`} key={index}>
           <div className="admin__panel-navlinks">{adminLink.title}</div>
         </Link>
       ))}

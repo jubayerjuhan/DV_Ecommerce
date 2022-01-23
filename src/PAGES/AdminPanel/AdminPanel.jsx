@@ -1,6 +1,6 @@
 import React from "react";
 import "./adminPanel.css";
-import AdminPanelSidebar from "../../component/APSidebar./AdminPanelSidebar.jsx";
+import AdminPanelSidebar from "../../component/APSidebar/AdminPanelSidebar.jsx";
 import AddProduct from "../Admin_addproduct/Addproduct.jsx";
 import { useParams } from "react-router-dom";
 const AdminPanel = () => {
