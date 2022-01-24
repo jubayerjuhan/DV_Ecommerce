@@ -12,6 +12,7 @@ import Spinner from "../../component/spinner/Spinner.jsx";
 import { getallProducts } from "../../actions/productactions.js";
 import { categories } from "./../Admin_addproduct/Addproduct";
 import { useLocation } from "react-router-dom";
+import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 
 const Productlist = () => {
   const { search } = useLocation();
@@ -64,6 +65,8 @@ const Productlist = () => {
   return (
     <>
       {loading && <Spinner />}
+      <TitleHelmet title="Products" />
+
       <Navbar />
       <div className="productlist__container section__padding">
         <div className="show_filters" onClick={() => setOpen(!open)}>

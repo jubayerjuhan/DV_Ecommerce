@@ -1,0 +1,12 @@
+.edit__order-items {
+  margin: 2rem 0;
+}
+
+.edit__order-item {
+  display: flex;
+  margin: 1rem 0;
+  img {
+    height: 200px;
+    object-fit: contain;
+  }
+}

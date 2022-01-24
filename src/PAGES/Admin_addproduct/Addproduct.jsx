@@ -10,6 +10,7 @@ import { addproduct } from "../../actions/productactions.js";
 import { toastSuccess, toastError } from "../../utils/toastify.js";
 import Spinner from "../../component/spinner/Spinner.jsx";
 import "./addproduct.css";
+import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 const Addproduct = () => {
   const [allimages, setAllimages] = React.useState("");
   const dispatch = useDispatch();
@@ -77,6 +78,8 @@ const Addproduct = () => {
 
   return (
     <>
+      <TitleHelmet title="Admin - Add Product" />
+
       {loading && <Spinner />}
       <div className="addproduct__container section__padding">
         <form onSubmit={handleSubmit(onSubmit)}>

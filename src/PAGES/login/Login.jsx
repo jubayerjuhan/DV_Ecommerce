@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toastError, toastSuccess } from "../../utils/toastify.js";
 import Spinner from "./../../component/spinner/Spinner";
 import { useLocation } from "react-router-dom";
+import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 
 const schema = yup.object({
   email: yup
@@ -62,6 +63,8 @@ const Login = () => {
   }
   return (
     <>
+      <TitleHelmet title="Login" />
+
       {loading && <Spinner />}
       <Navbar />
       <div className="register__container section__full-padding">

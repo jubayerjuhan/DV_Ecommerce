@@ -15,6 +15,7 @@ import {
 } from "../../utils/toastify.js";
 import { useNavigate } from "react-router-dom";
 import Spinner from "./../../component/spinner/Spinner";
+import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 const schema = yup.object({
   name: yup.string().required("Name is required"),
   email: yup
@@ -67,6 +68,8 @@ const Signup = () => {
   }
   return (
     <>
+      <TitleHelmet title="Sign Up" />
+
       {loading && <Spinner />}
       <Navbar />
       <div className="register__container section__full-padding">

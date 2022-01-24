@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toastError } from "../../utils/toastify.js";
 import Spinner from "./../../component/spinner/Spinner";
 import { getUserOrder } from "../../actions/orderactions.js";
+import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 const Myorders = () => {
   const dispatch = useDispatch();
 
@@ -15,6 +16,7 @@ const Myorders = () => {
   const { loading, orders, error, success } = useSelector(
     (state) => state.order
   );
+  const { user } = useSelector((state) => state.user);
 
   if (error) {
     toastError("Unknown Error Occured");
@@ -26,6 +28,8 @@ const Myorders = () => {
 
   return (
     <>
+      <TitleHelmet title={`${user?.name} - Orders`} />
+
       {loading && <Spinner />}
       <Navbar />
       <div className="myorders__container section__full-padding">

@@ -46,7 +46,9 @@ const Navbar = () => {
       {isOpen && (
         <div className="navbar__mobile-menu slide-left">
           <Menu />
-          <button className="navbar__mobile__button">Login</button>
+          <Link to="/login">
+            <button className="navbar__mobile__button">Login</button>
+          </Link>
         </div>
       )}
 
@@ -100,7 +102,6 @@ const Navbar = () => {
         {userbar && (
           <div className="userbar__container fade-in">
             <Link to="/orders">Orders</Link>
-            <Link to="/profile">Profile</Link>
             {user.role === "admin" && (
               <Link to="/admin/dashboard">Admin Panel</Link>
             )}

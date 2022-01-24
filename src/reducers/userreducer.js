@@ -49,3 +49,31 @@ export const registerUserReducer = (state = {}, action) => {
       return state;
   }
 }
+
+
+export const getAllUserReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "ALL_USER_PENDING":
+      return {
+        ...state,
+        loading: true,
+        success: false,
+      };
+    case "ALL_USER_FULFILLED":
+      return {
+        ...state,
+        loading: false,
+        success: action.payload,
+      };
+    case "ALL_USER_REJECTED":
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload
+      };
+    default:
+      return state;
+  }
+
+}

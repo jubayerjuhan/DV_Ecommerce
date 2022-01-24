@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Helmet } from "react-helmet";
 import './App.css';
 import Homepage from "./PAGES/homapage/Homepage";
 import Notfound from "./PAGES/notfound/Notfound";
@@ -21,6 +22,8 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import PrivateRoute from "./utils/Privateroute";
 import Myorders from "./PAGES/myorders/Myorders";
+import EditOrder from './PAGES/Admin_EditOrder/EditOrder.jsx';
+import Adminroutes from './utils/AdminRoutes.js'
 
 
 function App() {
@@ -59,7 +62,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgotten-password" element={<Forgetpassword />} />
-          <Route path="/manage-product" element={<ManageProduct />} />
+          {/* <Route path="/manage-product" element={<ManageProduct />} /> */}
 
           {/* private routes */}
           <Route element={<PrivateRoute />}>
@@ -68,8 +71,11 @@ function App() {
             <Route path="/orders" element={<Myorders />} />
 
             {/* admin route */}
-            <Route path="/addproduct" element={<Addproduct />} />
-            <Route path="/admin/:name" element={<AdminPanel />} />
+            <Route element={<Adminroutes />}>
+              <Route path="/addproduct" element={<Addproduct />} />
+              <Route path="/admin/:name" element={<AdminPanel />} />
+              <Route path="/admin/order/:id" element={<EditOrder />} />
+            </Route>
           </Route>
           <Route path="*" element={<Notfound />} />
         </Routes>

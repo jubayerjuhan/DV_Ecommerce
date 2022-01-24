@@ -11,6 +11,7 @@ import Spinner from "../../component/spinner/Spinner.jsx";
 import { toastWarning } from "../../utils/toastify.js";
 import { addItemstoCart } from "../../actions/cartactions.js";
 import { toastSuccess } from "./../../utils/toastify";
+import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 const Productdetail = () => {
   const dispatch = useDispatch();
   const { product, loading, success } = useSelector(
@@ -47,6 +48,7 @@ const Productdetail = () => {
 
   return (
     <>
+      <TitleHelmet title={product?.name} />
       {loading && <Spinner />}
       {loading === false && (
         <>
@@ -99,16 +101,6 @@ const Productdetail = () => {
                 </div>
                 <div className="product-detail__description">
                   <p>{product?.description}</p>
-                </div>
-
-                <div className="add__review-btn">
-                  <button>Add Review</button>
-                </div>
-
-                <div className="all-reviews__container">
-                  {reviews.map((review, i) => (
-                    <Reviewcardinfo review={review} key={i} />
-                  ))}
                 </div>
               </div>
             </div>

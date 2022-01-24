@@ -3,9 +3,10 @@ import { registerUserReducer } from "../reducers/userreducer.js"
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from 'redux-thunk'
 import logger from "redux-logger";
-import { allProductsReducer, getgood, getSingleProduct, productreducer } from "./../reducers/productreducer";
+import { allProductsReducer, editProductReducer, getSingleProduct, productreducer } from "./../reducers/productreducer";
 import { cartreducer } from "../reducers/cartreducer.js";
-import { orderReducer } from "./../reducers/orderreducer";
+import { getAllOrderReducer, getSingleOrderReducer, orderReducer, orderStatusReducer } from "./../reducers/orderreducer";
+import { deleteOrderReducer } from "../reducers/orderreducer.js";
 
 
 
@@ -19,7 +20,11 @@ const reducer = combineReducers({
   singleproduct: getSingleProduct,
   cart: cartreducer,
   order: orderReducer,
-  editproduct: getgood,
+  editproduct: editProductReducer,
+  getAllOrder: getAllOrderReducer,
+  deleteOrder: deleteOrderReducer,
+  updateOrder: orderStatusReducer,
+  singleOrder: getSingleOrderReducer,
 })
 
 const initialState = {

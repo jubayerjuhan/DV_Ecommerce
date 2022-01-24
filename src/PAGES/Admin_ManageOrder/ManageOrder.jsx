@@ -1,42 +1,41 @@
+import React from "react";
+
 import { useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  adminDeleteProduct,
-  getAdminProduct,
-} from "../../actions/productactions.js";
 import Spinner from "../../component/spinner/Spinner.jsx";
+
 import { BiMessageEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 
-import "./manageProduct.css";
-import EditProductModal from "../../component/EditProductModal/EditProductModal.jsx";
-import { useState } from "react";
-import { toastSuccess } from "../../utils/toastify.js";
-
-export default function DataGridDemo() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selected, setSelected] = useState("");
-
+import { useNavigate } from "react-router-dom";
+import { deleteorder, getallorder } from "../../actions/orderactions.js";
+const ManageOrder = () => {
   const dispatch = useDispatch();
-  const { products, loading } = useSelector((state) => state.allproducts);
-  const { success, error } = useSelector((state) => state.editproduct);
-  console.log(products);
+  const { orders, loading, error, success } = useSelector(
+    (state) => state.getAllOrder
+  );
+  const {
+    loading: loadingDelete,
+    error: deleteError,
+    success: deleteSuccess,
+  } = useSelector((state) => state.deleteOrder);
+  const navigate = useNavigate();
 
   const columns = [
     {
-      field: "productName",
-      headerName: "Product Name",
+      field: "id",
+      headerName: "Order ID",
       flex: 1,
     },
     {
-      field: "productPrice",
-      headerName: "Product Price",
+      field: "orderPrice",
+      headerName: "Order Price",
       flex: 1,
     },
     {
-      field: "stock",
-      headerName: "Stock",
+      field: "orderStatus",
+      headerName: "Order Status",
       type: "number",
       flex: 1,
     },
@@ -62,50 +61,43 @@ export default function DataGridDemo() {
   ];
 
   const rows = [];
-  if (products) {
-    products.forEach((product) => {
+  if (orders) {
+    orders.forEach((order) => {
       rows.push({
-        productName: product.name,
-        productPrice: product.price,
-        stock: product.stock,
-        id: product._id,
+        id: order._id,
+        orderPrice: `$${order.priceBreakdown.totalPrice}`,
+        orderStatus: order.orderStatus,
       });
     });
   }
 
   useEffect(() => {
-    dispatch(getAdminProduct());
+    dispatch(getallorder());
   }, [dispatch]);
 
   if (success) {
-    toastSuccess("Successfull");
     dispatch({ type: "RESET_SUCCESS" });
-    setModalOpen(false);
+  }
+  if (deleteSuccess) {
+    dispatch({ type: "RESET_SUCCESS" });
+    alert("Deleted Successfully");
   }
 
-  if (error) {
+  if (error || deleteError) {
     alert(error);
     dispatch({ type: "CLEAR_ERROR" });
   }
 
-  const onEditPress = (product) => {
-    setModalOpen(true);
-    setSelected(product);
+  const onEditPress = (id) => {
+    navigate(`/admin/order/${id}`);
   };
 
   const handleDelete = (product) => {
-    dispatch(adminDeleteProduct(product));
+    dispatch(deleteorder(product));
   };
   return (
     <>
-      {loading && <Spinner />}
-      {modalOpen && (
-        <EditProductModal
-          selected={selected}
-          open={modalOpen}
-          setModalOpen={setModalOpen}
-        />
-      )}
+      {(loading || loadingDelete) && <Spinner />}
       <div style={{ height: "100vh", width: "100%" }}>
         <DataGrid
           rows={rows}
@@ -117,4 +109,6 @@ export default function DataGridDemo() {
       </div>
     </>
   );
-}
+};
+
+export default ManageOrder;

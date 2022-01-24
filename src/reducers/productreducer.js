@@ -96,8 +96,7 @@ export const getSingleProduct = (state = {}, action) => {
 
 
 // edit product - admin
-
-export const getgood = (state = {
+export const editProductReducer = (state = {
   product: {}
 }, action) => {
   switch (action.type) {

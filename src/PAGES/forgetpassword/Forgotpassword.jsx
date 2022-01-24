@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Errordialog from "./../../component/errordialog/Errordialog";
+import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 
 const schema = yup.object({
   email: yup
@@ -27,6 +28,8 @@ const Forgetpassword = () => {
   };
   return (
     <>
+      <TitleHelmet title="Forget Password" />
+
       <Navbar />
       <Errordialog />
       <div className="register__container section__full-padding">

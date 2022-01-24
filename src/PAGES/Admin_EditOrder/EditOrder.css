@@ -1,0 +1,17 @@
+.edit__order-items {
+  margin: 2rem 0;
+}
+
+.edit__order-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1rem 0;
+}
+
+.edit__order-item img {
+  height: 200px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+/*# sourceMappingURL=EditOrder.css.map */

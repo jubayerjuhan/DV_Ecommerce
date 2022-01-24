@@ -4,10 +4,13 @@ import Footer from "../../component/footer/Footer";
 import Materialstepper from "../../component/stepper/Stepper.jsx";
 import "./checkoutcomplete.css";
 import { useNavigate } from "react-router-dom";
+import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 const Checkoutcomplete = () => {
   const navigate = useNavigate();
   return (
     <>
+      <TitleHelmet title="Dim Vaji - Complete" />
+
       <Navbar />
       <Materialstepper activestep={2} />
       <div className="section__padding" style={{ paddingBottom: "6rem" }}>

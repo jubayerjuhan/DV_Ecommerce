@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItemstoCart } from "../../actions/cartactions.js";
 import { toastWarning } from "../../utils/toastify.js";
 import { useNavigate } from "react-router";
+import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 
 const Shoppingcart = () => {
   const navigate = useNavigate();
@@ -18,14 +19,10 @@ const Shoppingcart = () => {
   }
 
   let shipping = 10;
-  if (subtotal > 500) {
-    shipping = 20;
-  } else if (subtotal > 1000) {
-    shipping = 30;
-  } else if (subtotal === 0) {
+  if (subtotal > 100) {
     shipping = 0;
   } else {
-    shipping = 50;
+    shipping = 20;
   }
 
   const setupCheckout = () => {
@@ -42,43 +39,51 @@ const Shoppingcart = () => {
   };
   return (
     <>
+      <TitleHelmet title="Dim Vaji - Cart" />
+
       <Navbar />
-      <Stepper activestep={0} />
-      <div className="shopping-cart__container section__padding">
-        <div className="shopping-cart__item-header">
-          <p>Product</p>
-          <p>Quantity</p>
-          <p>Price</p>
-          <p>Total</p>
-        </div>
-        <div className="shopping-cart__items-container">
-          {cartItems?.map((item) => (
-            <ShoppingcartItem item={item} key={item.id} />
-          ))}
-        </div>
+      {cartItems.length === 0 ? (
+        <div>No Items On Cart</div>
+      ) : (
+        <>
+          <Stepper activestep={0} />
+          <div className="shopping-cart__container section__padding">
+            <div className="shopping-cart__item-header">
+              <p>Product</p>
+              <p>Quantity</p>
+              <p>Price</p>
+              <p>Total</p>
+            </div>
+            <div className="shopping-cart__items-container">
+              {cartItems?.map((item) => (
+                <ShoppingcartItem item={item} key={item.id} />
+              ))}
+            </div>
 
-        <div className="shopping-cart__pricing">
-          <div className="shopping-cart__pricing-subtotal">
-            <p>Subtotal</p>
-            <p>{`$${subtotal}`}</p>
-          </div>
-          <div className="shopping-cart__pricing-tax">
-            <p>Shipping</p>
-            <p>{`$${shipping}`}</p>
-          </div>
-          <div className="shopping-cart__total">
-            <p>Total</p>
-            <p>{`$${shipping + subtotal}`}</p>
-          </div>
-        </div>
+            <div className="shopping-cart__pricing">
+              <div className="shopping-cart__pricing-subtotal">
+                <p>Subtotal</p>
+                <p>{`$${subtotal}`}</p>
+              </div>
+              <div className="shopping-cart__pricing-tax">
+                <p>Shipping</p>
+                <p>{`$${shipping}`}</p>
+              </div>
+              <div className="shopping-cart__total">
+                <p>Total</p>
+                <p>{`$${shipping + subtotal}`}</p>
+              </div>
+            </div>
 
-        <div className="shopping-cart__action_btn">
-          <button onClick={() => navigate("/products")}>
-            Continue Shopping
-          </button>
-          <button onClick={setupCheckout}>Chackout</button>
-        </div>
-      </div>
+            <div className="shopping-cart__action_btn">
+              <button onClick={() => navigate("/products")}>
+                Continue Shopping
+              </button>
+              <button onClick={setupCheckout}>Chackout</button>
+            </div>
+          </div>
+        </>
+      )}
       <Footer />
     </>
   );

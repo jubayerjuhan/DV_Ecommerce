@@ -1,0 +1,21 @@
+.notFound__page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+
+  padding: 2rem 0;
+}
+
+.notFound__page img {
+  width: 30%;
+  height: auto;
+}
+
+.notFound__page p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--theme-blue);
+}

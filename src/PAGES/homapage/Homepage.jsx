@@ -8,10 +8,12 @@ import FeaturedProducts from "./../../component/featured/FeaturedProducts";
 import Hotsection from "../../component/homapage_hotsection/Hotsection";
 import Footerfeature from "./../../component/footer_feature/Footerfeature";
 import Footer from "../../component/footer/Footer.jsx";
+import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 
 const Homepage = () => {
   return (
     <div className="homepage__container">
+      <TitleHelmet title="Dim Vaji - Home" />
       <Navbar />
       <Slidercomponent />
       <Brands />
