@@ -1,1 +1,22 @@
-/* No CSS *//*# sourceMappingURL=Homepage.css.map */
+.homepage__container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1.4fr 8.6fr;
+      grid-template-columns: 1.4fr 8.6fr;
+}
+
+.homepage__container .sidebar {
+  border-right: 0.4px solid rgba(128, 128, 128, 0.541);
+  -webkit-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+@media (max-width: 1200px) {
+  .sidebar {
+    display: none;
+  }
+  .homepage__container {
+    display: block;
+  }
+}
+/*# sourceMappingURL=Homepage.css.map */

@@ -19,6 +19,7 @@
 }
 
 .navbar__searchbar {
+  margin-left: 10%;
   form {
     width: 500px;
     height: 48px;
@@ -152,6 +153,10 @@
   }
 }
 
+.navbar__logo {
+  display: none;
+}
+
 @media screen and (max-width: 1000px) {
   .navbar__container-top {
     flex-direction: row;
@@ -168,55 +173,59 @@
     }
   }
 
+  .navbar__container-menu {
+    display: none;
+  }
+}
+
+.navbar__mobile-menu {
+  z-index: 2;
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+  width: 70vw;
+  background-color: var(--theme-blue);
+  color: white;
+
+  a {
+    color: rgb(211, 206, 206);
+    margin: 1rem 0;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27px;
+
+    &:hover {
+      color: white;
+    }
+  }
+  .navbar__mobile__button {
+    padding: 0.7rem 5rem;
+    margin: 1rem 0;
+    color: var(--theme-blue);
+    background-color: white;
+    border: none;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+  }
+}
+
+@media (max-width: 1200px) {
   .navbar__mobile-hamburger {
     display: block;
     z-index: 3;
   }
-
-  .navbar__container-menu {
-    display: none;
-  }
-
-  .navbar__mobile-menu {
-    z-index: 2;
-    position: absolute;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    height: 100vh;
-    width: 70vw;
-    background-color: var(--theme-blue);
-    color: white;
-
-    a {
-      color: rgb(211, 206, 206);
-      margin: 1rem 0;
-      font-family: var(--font-family);
-      font-weight: 500;
-      font-size: 22px;
-      line-height: 27px;
-
-      &:hover {
-        color: white;
-      }
-    }
-    .navbar__mobile__button {
-      padding: 0.7rem 5rem;
-      margin: 1rem 0;
-      color: var(--theme-blue);
-      background-color: white;
-      border: none;
-      font-family: var(--font-family);
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 21px;
-    }
+  .navbar__logo {
+    display: block;
   }
 }
-
 @media (max-width: 768px) {
   .navbar__mobile-menu {
     a {

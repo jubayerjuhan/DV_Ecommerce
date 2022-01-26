@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Horizontalproductcard from "../horizontalProductcard/Horizontalproductcard";
 import "./hotsection.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getallProducts } from "../../actions/productactions";
+
 const Hotsection = () => {
+  const dispatch = useDispatch();
   let { products } = useSelector((state) => state.allproducts);
   const newArrival = products?.slice(0, 4);
 
   const popular = [];
+
+  useEffect(() => {
+    dispatch(getallProducts());
+  }, []);
 
   if (products) {
     for (let i = 0; i < 4; i++) {

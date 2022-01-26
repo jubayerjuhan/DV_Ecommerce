@@ -3,7 +3,7 @@ import logo from "../../assets/images/logo.svg";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { FaOpencart } from "react-icons/fa";
 import "./navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Twirl as Hamburger } from "hamburger-react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
@@ -20,6 +20,8 @@ export const Menu = () => (
   </>
 );
 const Navbar = () => {
+  const location = useLocation();
+  console.log(location);
   const navigate = useNavigate();
   const [isOpen, setOpen] = React.useState(false);
   const [keyword, setKeyword] = React.useState("");
@@ -57,7 +59,11 @@ const Navbar = () => {
         style={{ paddingTop: "1rem", paddingBottom: "1rem" }}
       >
         <div className="navbar__container-top">
-          <div className="navbar__logo">
+          <div
+            className={
+              location.pathname === "/" ? "navbar__logo" : "navbar__logo-active"
+            }
+          >
             <a href="/">
               <img src={logo} alt="Logo" />
             </a>
@@ -108,9 +114,9 @@ const Navbar = () => {
             <button onClick={handleLogout}>Logout</button>
           </div>
         )}
-        <div className="navbar__container-menu ">
+        {/* <div className="navbar__container-menu ">
           <Menu></Menu>
-        </div>
+        </div> */}
       </div>
     </>
   );

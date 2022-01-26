@@ -18,101 +18,46 @@ import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from "../../actions/orderactions.js";
 import { useNavigate } from "react-router";
 import Spinner from "./../../component/spinner/Spinner";
+import { useState } from "react";
 
 const Checkout = () => {
   const navigate = useNavigate();
-  const paybtn = useRef(null);
-  const stripe = useStripe();
-  const elements = useElements();
+  const amount = JSON.parse(sessionStorage.getItem("amount"));
+  console.log(amount);
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const { success, error, loading } = useSelector((state) => state.placeOrder);
   const { shippingAddress, cartItems } = useSelector((state) => state.cart);
-  const { success, error } = useSelector((state) => state.order);
   const { user } = useSelector((state) => state.user);
-
+  const [transectionId, setTransectionId] = useState("");
   const dispatch = useDispatch();
-  const [loading, setLoading] = React.useState(false);
-
-  const paymentData = {
-    amount:
-      Math.round(JSON.parse(sessionStorage.getItem("amount")).totalPrice) * 100,
-  };
-  console.log(paymentData);
 
   //countryList
   const countries = Country.getAllCountries();
 
   if (success) {
-    toastSuccess("Order Placed Successfully");
-    dispatch({ type: "RESET_SUCCESS" });
+    navigate("/checkout-complete");
+    dispatch({ type: "SUCCESS_RESET_ORDER" });
+    localStorage.removeItem("cart");
   }
   if (error) {
     toastError(Error);
     dispatch({ type: "CLEAR_ERROR" });
   }
 
-  const handleCheckout = async (e) => {
-    const orderData = {
+  const handleOrder = (method, id) => {
+    const orderInfo = {
       shippingInfo: shippingAddress,
       orderItems: cartItems,
-      priceBreakdown: JSON.parse(sessionStorage.getItem("amount")),
+      user: user._id,
+      paymentInfo: {
+        id: id ? id : "none",
+        status: method,
+      },
+      paidAt: Date.now(),
+      priceBreakdown: amount,
     };
 
-    e.preventDefault();
-    paybtn.current.disabled = true;
-    setLoading(true);
-    try {
-      const { data } = await authaxios.post("/payment/process", paymentData);
-
-      if (!stripe || !elements) {
-        paybtn.current.disabled = false;
-        setLoading(false);
-        return;
-      }
-      const result = await stripe.confirmCardPayment(data.client_secret, {
-        payment_method: {
-          card: elements.getElement(CardNumberElement),
-          billing_details: {
-            name: user.name,
-            email: user.email,
-            address: {
-              line1: shippingAddress.street,
-              city: shippingAddress.city,
-              state: shippingAddress.state,
-              postal_code: shippingAddress.zipcode,
-              country: shippingAddress.country,
-            },
-          },
-        },
-      });
-
-      if (result.error) {
-        toastError(result.error.message);
-        paybtn.current.disabled = false;
-        setLoading(false);
-      } else {
-        // If Payment Success Then This Will Happen
-        if (result.paymentIntent.status === "succeeded") {
-          paybtn.current.disabled = false;
-          setLoading(false);
-          toastSuccess("Payment Successful");
-          orderData.paymentInfo = {
-            id: result.paymentIntent.id,
-            status: result.paymentIntent.status,
-          };
-          dispatch(placeOrder(orderData));
-          localStorage.removeItem("cart");
-          navigate("/checkout-complete");
-        } else {
-          setLoading(false);
-          paybtn.current.disabled = false;
-          toastError("Payment Failed");
-        }
-      }
-    } catch (err) {
-      console.log(err);
-      toastError("Unexpected Error While Processing Payment");
-      paybtn.current.disabled = true;
-      setLoading(false);
-    }
+    dispatch(placeOrder(orderInfo));
   };
   return (
     <>
@@ -124,16 +69,32 @@ const Checkout = () => {
           <p className="shipping__address-section-title">Buyer Info</p>
           <Shippingform countries={countries} />
         </div>
-        <div className="checkout__section-cc">
-          {shippingAddress && (
-            <form onSubmit={handleCheckout}>
-              <CardNumberElement className="cardInput" />
-              <CardExpiryElement className="cardInput" />
-              <CardCvcElement className="cardInput" />
-              <button ref={paybtn} className="paybtn">
-                Pay Now
-              </button>
-            </form>
+        <div className="checkout__section">
+          <p className="paymentMethod__select">Select Payment Method</p>
+          <select
+            disabled={shippingAddress ? false : true}
+            name=""
+            id=""
+            onChange={(e) => setPaymentMethod(e.target.value)}
+          >
+            <option value={null}>Select One</option>
+            <option value="bKash">bKash</option>
+            <option value="COD">Cash On Delivery</option>
+          </select>
+          {paymentMethod === "bKash" && (
+            <ShowBkashOption
+              paymentMethod={paymentMethod}
+              transectionId={transectionId}
+              setTransectionId={setTransectionId}
+              handleOrder={handleOrder}
+              totalPrice={amount.totalPrice}
+            />
+          )}
+          {paymentMethod === "COD" && (
+            <ShowCODOption
+              paymentMethod={paymentMethod}
+              handleOrder={handleOrder}
+            />
           )}
         </div>
       </div>
@@ -142,4 +103,34 @@ const Checkout = () => {
   );
 };
 
+const ShowCODOption = ({ handleOrder, paymentMethod }) => (
+  <div className="COD">
+    <input type="submit" onClick={() => handleOrder(paymentMethod)} />
+  </div>
+);
+
+const ShowBkashOption = ({
+  setTransectionId,
+  transectionId,
+  totalPrice,
+  handleOrder,
+  paymentMethod,
+}) => (
+  <div className="bKash">
+    <p>
+      Please Send {totalPrice} Taka To This bKash account and enter the
+      transection id down below.{" "}
+    </p>
+    <input
+      type="text"
+      placeholder="Bkash Transection Id"
+      onChange={(e) => setTransectionId(e.target.value)}
+    />{" "}
+    <br />
+    <input
+      type="submit"
+      onClick={() => handleOrder(paymentMethod, transectionId)}
+    />
+  </div>
+);
 export default Checkout;

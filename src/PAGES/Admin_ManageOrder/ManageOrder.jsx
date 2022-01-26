@@ -40,6 +40,11 @@ const ManageOrder = () => {
       flex: 1,
     },
     {
+      field: "paymentMethod",
+      headerName: "Payment Method",
+      flex: 1,
+    },
+    {
       field: "action",
       headerName: "Action",
       sortable: false,
@@ -67,6 +72,7 @@ const ManageOrder = () => {
         id: order._id,
         orderPrice: `$${order.priceBreakdown.totalPrice}`,
         orderStatus: order.orderStatus,
+        paymentMethod: order.paymentInfo.status,
       });
     });
   }

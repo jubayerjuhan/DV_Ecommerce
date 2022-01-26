@@ -6,10 +6,16 @@
   font-family: var(--font-family);
 }
 
+h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  /* line-height: 1.5rem; */
+}
 
 /* Section margin and padding */
 .section__padding {
-  padding: 4rem 6rem 0 6rem;
+  padding: 2rem 2rem 0 2rem;
   position: relative;
 }
 .section__full-padding {
@@ -23,7 +29,6 @@
   padding: 2rem;
 }
 
-
 .lightText {
   color: #fff;
 }
@@ -34,7 +39,7 @@ a {
   color: unset;
 }
 
-button{
+button {
   cursor: pointer;
 }
 

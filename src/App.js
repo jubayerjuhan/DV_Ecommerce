@@ -24,6 +24,7 @@ import PrivateRoute from "./utils/Privateroute";
 import Myorders from "./PAGES/myorders/Myorders";
 import EditOrder from './PAGES/Admin_EditOrder/EditOrder.jsx';
 import Adminroutes from './utils/AdminRoutes.js'
+import Slide from './component/Slide/Slide.jsx';
 
 
 function App() {
@@ -62,6 +63,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgotten-password" element={<Forgetpassword />} />
+          {/* <Route path="/swiper" element={<Slide />} /> */}
+
           {/* <Route path="/manage-product" element={<ManageProduct />} /> */}
 
           {/* private routes */}

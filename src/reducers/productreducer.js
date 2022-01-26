@@ -93,6 +93,36 @@ export const getSingleProduct = (state = {}, action) => {
       return state;
   }
 }
+export const adminProductReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'ALL_ADMIN_PRODUCTS_PENDING':
+      return {
+        ...state,
+        loading: true,
+      }
+    case 'ALL_ADMIN_PRODUCTS_FULFILLED':
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        products: action.payload,
+      }
+    case "RESET_SUCCESS":
+      return {
+        ...state,
+        success: null,
+      }
+    case 'ALL_ADMIN_PRODUCTS_REJECTED':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      }
+
+    default:
+      return state;
+  }
+}
 
 
 // edit product - admin
@@ -127,3 +157,5 @@ export const editProductReducer = (state = {
       return state;
   }
 }
+
+

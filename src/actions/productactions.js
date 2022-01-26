@@ -16,8 +16,10 @@ export const addproduct = (productdata) => async (dispatch) => {
 
 // get all products from the server
 export const getallProducts = (keyword = '', ratings = 0, gte = 1, lte = 26009, page = 1, category = '') => async (dispatch) => {
+
+
   const link = category.length === 0 ? `/products?ratings[gte]=${ratings}&price[gte]=${gte}&price[lte]=${lte}&page=${page}&keyword=${keyword}` : `/products?ratings[gte]=${ratings}&price[gte]=${gte}&price[lte]=${lte}&page=${page}&keyword=${keyword}&category=${category}`
-  console.log(link)
+  console.log(link, 'link,')
   try {
     dispatch({ type: "ALL_PRODUCTS_PENDING" })
 
@@ -33,7 +35,6 @@ export const getallProducts = (keyword = '', ratings = 0, gte = 1, lte = 26009, 
 
 
 // admin edit product
-
 export const adminEditProduct = (value, productId) => async (dispatch) => {
   try {
     dispatch({ type: "EDIT_PRODUCT_PENDING" })
@@ -61,12 +62,12 @@ export const adminDeleteProduct = (productId) => async (dispatch) => {
 export const getAdminProduct = () => async (dispatch) => {
   console.log('...logging')
   try {
-    dispatch({ type: "ALL_PRODUCTS_PENDING" })
+    dispatch({ type: "ALL_ADMIN_PRODUCTS_PENDING" })
 
     const { data } = await authaxios.get('/admin/allProducts');
-    dispatch({ type: "ALL_PRODUCTS_FULFILLED", payload: data })
+    dispatch({ type: "ALL_ADMIN_PRODUCTS_FULFILLED", payload: data.products })
   } catch (err) {
-    dispatch({ type: "ALL_PRODUCTS_REJECTED", error: err.message || err.response.data.message })
+    dispatch({ type: "ALL_ADMIN_PRODUCTS_REJECTED", error: err.message || err.response.data.message })
 
   }
 }

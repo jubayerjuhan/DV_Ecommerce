@@ -19,7 +19,7 @@ const Dashboard = () => {
   // counting product price
   let totalPrice = 0;
 
-  orders.forEach((order) => {
+  orders?.forEach((order) => {
     totalPrice += order.priceBreakdown.subtotal;
   });
 

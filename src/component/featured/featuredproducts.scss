@@ -28,15 +28,14 @@
   }
 }
 
-.fp__container-section {
-  display: grid;
-  grid-template-columns: 1.5fr 4.5fr;
-  grid-gap: 0 2rem;
-}
+// .fp__container-section {
+//   grid-template-columns: 1.5fr 4.5fr;
+//   grid-gap: 0 2rem;
+// }
 
 .fp__products {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 1rem;
 }
 
@@ -91,7 +90,7 @@
   }
 
   .fp__products {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     place-items: center;
     margin: 2rem 0;
 

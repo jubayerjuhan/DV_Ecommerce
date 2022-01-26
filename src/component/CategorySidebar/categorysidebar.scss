@@ -1,0 +1,21 @@
+.category__sidebar-container {
+  padding-top: 2rem;
+  padding-left: 1rem;
+}
+.category__sidebar-container {
+  position: fixed;
+
+  a {
+    padding: 0.5rem 0;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+}
+
+.category__logo {
+  margin: 1rem 0;
+}

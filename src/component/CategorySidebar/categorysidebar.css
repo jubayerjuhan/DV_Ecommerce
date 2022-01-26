@@ -1,0 +1,28 @@
+.category__sidebar-container {
+  padding-top: 2rem;
+  padding-left: 1rem;
+}
+
+.category__sidebar-container {
+  position: fixed;
+}
+
+.category__sidebar-container a {
+  padding: 0.5rem 0;
+}
+
+.category__sidebar-container .menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 2rem;
+}
+
+.category__logo {
+  margin: 1rem 0;
+}
+/*# sourceMappingURL=categorysidebar.css.map */

@@ -6,7 +6,7 @@ import * as yup from "yup";
 import "./shippingform.css";
 import { useDispatch } from "react-redux";
 
-const Shippingform = ({ countries }) => {
+const Shippingform = () => {
   const schema = yup
     .object({
       name: yup.string().required(),
@@ -15,7 +15,6 @@ const Shippingform = ({ countries }) => {
       city: yup.string().required(),
       state: yup.string().required(),
       zipcode: yup.number().required().positive(),
-      country: yup.string().required("Add Now"),
     })
     .required();
   const dispatch = useDispatch();
@@ -63,16 +62,7 @@ const Shippingform = ({ countries }) => {
         <input {...register("zipcode")} />
         <p className="error">{errors.zipcode && "Zipcode Required"}</p>
       </div>
-      <div className="input__group">
-        <p>Country</p>
-        <select name="" {...register("country")}>
-          <option value="">Select Country</option>
-          {countries.map((country, i) => (
-            <option value={country.isoCode}>{country.name}</option>
-          ))}
-        </select>
-        <p className="error">{errors.country && "Country Required"}</p>
-      </div>
+
       <input type="submit" value="Submit" />
     </form>
   );

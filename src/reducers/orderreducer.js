@@ -1,16 +1,9 @@
 export const orderReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'PLACE_ORDER_PENDING':
     case 'GET_USER_ORDER_PENDING':
       return {
         ...state,
         loading: true,
-      }
-    case 'PLACE_ORDER_FULFILLED':
-      return {
-        ...state,
-        loading: false,
-        success: true,
       }
     case 'GET_USER_ORDER_FULFILLED':
       return {
@@ -19,7 +12,12 @@ export const orderReducer = (state = {}, action) => {
         success: true,
         orders: action.payload,
       }
-    case 'PLACE_ORDER_REJECTED':
+    case 'SUCCESS_RESET':
+      return {
+        ...state,
+        success: false,
+      }
+
     case 'GET_USER_ORDER_REJECTED':
       return {
         ...state,
@@ -30,7 +28,36 @@ export const orderReducer = (state = {}, action) => {
     default:
       return state;
   }
+}
 
+export const placeOrderReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'PLACE_ORDER_PENDING':
+      return {
+        ...state,
+        loading: true,
+      }
+    case 'PLACE_ORDER_FULFILLED':
+      return {
+        ...state,
+        loading: false,
+        success: true,
+      }
+    case 'SUCCESS_RESET_ORDER':
+      return {
+        ...state,
+        success: false,
+      }
+    case 'PLACE_ORDER_REJECTED':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      }
+
+    default:
+      return state;
+  }
 }
 
 

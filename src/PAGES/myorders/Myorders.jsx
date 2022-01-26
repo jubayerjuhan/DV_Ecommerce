@@ -23,7 +23,7 @@ const Myorders = () => {
   }
 
   if (success) {
-    dispatch({ type: "RESET_SUCCESS" });
+    dispatch({ type: "SUCCESS_RESET" });
   }
 
   return (

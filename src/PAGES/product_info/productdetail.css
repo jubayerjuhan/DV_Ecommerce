@@ -6,6 +6,10 @@
   grid-gap: 2rem;
 }
 
+p {
+  margin: 0;
+}
+
 .product-detail__image {
   display: -ms-grid;
   display: grid;
