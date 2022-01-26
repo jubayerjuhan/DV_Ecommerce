@@ -1,8 +1,16 @@
+.fp__loading {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .fp__container-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 1rem 0;
+  padding: 0 2rem;
 
   h4 {
     font-family: var(--font-family);
