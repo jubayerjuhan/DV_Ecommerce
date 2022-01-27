@@ -53,7 +53,7 @@ const FeaturedProducts = ({ category }) => {
           <div className="fp__container section__padding" id="featured">
             <div className="fp__container-section" id="featured">
               <div className="fp__products">
-                {products?.map((product, i) => (
+                {products.slice(0, 5)?.map((product, i) => (
                   <Link key={i} to={`/product/${product._id}`}>
                     <ProductcardPrimary product={product} />
                   </Link>
