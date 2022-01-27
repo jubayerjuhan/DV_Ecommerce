@@ -125,7 +125,7 @@ const ProductlistFilterLeft = ({ onValueChange, filter }) => (
       </select>
     </div>
 
-    <div className="filter__price">
+    {/* <div className="filter__price">
       <p>Filter By Price</p>
       <Slider
         value={filter.price}
@@ -134,7 +134,7 @@ const ProductlistFilterLeft = ({ onValueChange, filter }) => (
         valueLabelDisplay="auto"
         getAriaValueText={(value) => `${value}`}
       ></Slider>
-    </div>
+    </div> */}
   </div>
 );
 
