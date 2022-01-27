@@ -21,6 +21,7 @@ const Addproduct = () => {
       description: yup.string().required(),
       price: yup.number().required(),
       category: yup.string().required(),
+      subCategory: yup.string().required(),
       stock: yup.number().required(),
     })
     .required();
@@ -56,6 +57,7 @@ const Addproduct = () => {
     formData.append("description", data.description);
     formData.append("price", data.price);
     formData.append("category", data.category);
+    formData.append("subCategory", data.subCategory ? data.subCategory : null);
     formData.append("stock", data.stock);
     allimages.forEach((elem) => {
       formData.append("images", elem);
@@ -118,6 +120,13 @@ const Addproduct = () => {
             <p className="error">{errors.category && "Category Required"}</p>
           </div>
           <div className="input__group">
+            <p>Sub Category</p>
+            <input {...register("subCategory")} />
+            <p className="error">
+              {errors.subCategory && "Subcategory Required"}
+            </p>
+          </div>
+          <div className="input__group">
             <p>Stock</p>
             <input {...register("stock")} />
             <p className="error">{errors.stock && "Stock is Required"}</p>
@@ -135,26 +144,14 @@ const Addproduct = () => {
 };
 
 export const categories = [
-  "T-shirt",
-  "Shirt",
-  "Pants",
-  "Shoes",
-  "Bag",
-  "Female Dress",
-  "Accessories",
-  "Phone",
-  "Appliences",
-  "Laptop",
-  "Camera",
-  "Jacket",
-  "Trousers",
-  "Socks",
-  "Sweater",
-  "Sports",
-  "TV",
-  "Tablet",
-  "Washing Machine",
-  "Refrigerator",
+  "Daily Food Package",
+  "Dimvaji Food Package",
+  "Diet Food Package",
+  "Bachelor Food Package",
+  "Only Fruit Package",
+  "Patient Food Package",
+  "Nasta Food Package",
+  "Vegetable Food Package",
 ];
 
 export default Addproduct;

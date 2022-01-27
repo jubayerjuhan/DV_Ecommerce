@@ -5,6 +5,7 @@
 
 .category__sidebar-container {
   position: fixed;
+  max-width: 180px;
 }
 
 .category__sidebar-container a {

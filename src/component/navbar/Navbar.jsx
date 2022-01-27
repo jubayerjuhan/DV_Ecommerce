@@ -9,14 +9,14 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { toastSuccess } from "./../../utils/toastify";
 import { useNavigate } from "react-router-dom";
+import { categories } from "../../PAGES/Admin_addproduct/Addproduct.jsx";
 export const Menu = () => (
   <>
-    <a href="/#newarrivals">New Arrivals</a>
-    <Link to="/products">Product List</Link>
-    {/* <Link to="#categories">Categories</Link> */}
-    <a href="/#featured">Featured</a>
-    {/* <Link to="#collections">Collections</Link> */}
-    <a href="/#popularnow">Popular Now 📈</a>
+    {categories.map((cate) => (
+      <>
+        <Link to={`/products?category=${cate}`}>{cate}</Link>
+      </>
+    ))}
   </>
 );
 const Navbar = () => {
