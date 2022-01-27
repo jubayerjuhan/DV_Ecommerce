@@ -14,7 +14,9 @@ export const Menu = () => (
   <>
     {categories.map((cate) => (
       <>
-        <Link to={`/products?category=${cate}`}>{cate}</Link>
+        <a href={`/products?category=${cate}`}>
+          <p>{cate}</p>
+        </a>
       </>
     ))}
   </>
