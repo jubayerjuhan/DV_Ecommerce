@@ -39,7 +39,7 @@ const Shoppingcart = () => {
   };
   return (
     <>
-      <TitleHelmet title="Dim Vaji - Cart" />
+      <TitleHelmet title="Dimvaji - Cart" />
 
       <Navbar />
       {cartItems.length === 0 ? (

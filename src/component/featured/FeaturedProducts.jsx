@@ -39,10 +39,10 @@ const FeaturedProducts = ({ category }) => {
     <>
       <div className="fp__container-heading ">
         <h4>{category}</h4>
-        <Link to={`/products?category=${category}`}>
+        <a href={`/products?category=${category}`}>
           <p>View All</p>
           <BsArrowRight />
-        </Link>
+        </a>
       </div>
       {loading ? (
         <div className="fp__loading">

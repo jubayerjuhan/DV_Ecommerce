@@ -24,7 +24,7 @@ const Homepage = () => {
   );
   return (
     <>
-      <TitleHelmet title="Dim Vaji - Home" />
+      <TitleHelmet title="Dimvaji - Home" />
       <div className="homepage__container">
         <div className="sidebar">
           <CategorySidebar />

@@ -9,7 +9,7 @@ const Checkoutcomplete = () => {
   const navigate = useNavigate();
   return (
     <>
-      <TitleHelmet title="Dim Vaji - Complete" />
+      <TitleHelmet title="Dimvaji - Complete" />
 
       <Navbar />
       <Materialstepper activestep={2} />
