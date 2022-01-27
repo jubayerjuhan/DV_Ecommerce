@@ -19,7 +19,7 @@ export default function DataGridDemo() {
   const [selected, setSelected] = useState("");
 
   const dispatch = useDispatch();
-  const { products, loading } = useSelector((state) => state.allproducts);
+  const { products, loading } = useSelector((state) => state.adminProducts);
   const { success, error } = useSelector((state) => state.editproduct);
   console.log(products);
 
