@@ -13,6 +13,7 @@ import CategorySidebar from "../../component/CategorySidebar/CategorySidebar.jsx
 import "./Homepage.css";
 import Bannerslider from "../../component/BannerSlider/Bannerslider.jsx";
 import { useSelector } from "react-redux";
+import { categories } from "../Admin_addproduct/Addproduct.jsx";
 
 const Homepage = () => {
   const { loading: loadingAllProduct } = useSelector(
@@ -31,10 +32,12 @@ const Homepage = () => {
         <div className="homepage__main">
           <Navbar />
           <Bannerslider />
-          <FeaturedProducts category="Sports" />
+          {/* <FeaturedProducts category="Sports" />
           <FeaturedProducts category="Accessories" />
-          <FeaturedProducts category="Sports" />
-          <FeaturedProducts category="Sports" />
+          <FeaturedProducts category="Sports" /> */}
+          {categories.map((category) => (
+            <FeaturedProducts category={category} />
+          ))}
           <Hotsection />
           <Footerfeature />
 
