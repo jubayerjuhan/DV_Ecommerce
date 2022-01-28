@@ -115,6 +115,24 @@
   line-height: 21px;
 }
 
+.cart__btn {
+  position: relative;
+}
+
+.cart__btn div {
+  position: absolute;
+  right: 0;
+  top: -10px;
+  background-color: var(--theme-blue);
+  border-radius: 50%;
+}
+
+.cart__btn div p {
+  padding: 2px 7.4px;
+  color: white;
+  font-size: 12px;
+}
+
 .navbar__mobile-hamburger {
   display: none;
 }
@@ -201,6 +219,10 @@
 
 .navbar__logo {
   display: none;
+}
+
+.navbar__sign-in {
+  margin-left: 15px;
 }
 
 @media screen and (max-width: 1000px) {

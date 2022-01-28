@@ -48,4 +48,25 @@ export const loginUser = (logindata) => async (dispatch) => {
 }
 
 
+export const forgetPassword = (email) => async (dispatch) => {
+  try {
+    dispatch({ type: 'FORGET_PASSWORD_PENDING' })
+    const { data } = await instance.post('/forget-password', email);
+    dispatch({ type: 'FORGET_PASSWORD_FULFILLED', payload: data });
+  } catch (error) {
+    dispatch({ type: 'FORGET_PASSWORD_REJECTED', payload: error?.response?.data?.message || error.message })
+  }
+}
 
+
+export const resetPassword = (resetdata, token) => async (dispatch) => {
+  try {
+    dispatch({ type: 'RESET_PASSWORD_PENDING' })
+    const { data } = await instance.put(`/reset-password/${token}`, resetdata, {
+
+    });
+    dispatch({ type: 'RESET_PASSWORD_FULFILLED', payload: data });
+  } catch (error) {
+    dispatch({ type: 'RESET_PASSWORD_REJECTED', payload: error?.response?.data?.message || error.message })
+  }
+}

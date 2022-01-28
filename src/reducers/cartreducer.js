@@ -21,6 +21,11 @@ export const cartreducer = (state = {
         }
       }
 
+    case 'SET_CART':
+      return {
+        ...state,
+        cartItems: action.payload
+      }
     case 'ADD_SHIPPING_ADDRESS':
       return {
         ...state,
@@ -32,3 +37,29 @@ export const cartreducer = (state = {
   }
 
 }
+
+
+export const deleteCartProduct = (state = {}, action) => {
+  switch (action.type) {
+    case 'DELETE_PRODUCT_PENDING':
+      return {
+        ...state,
+        loading: true,
+      }
+    case 'DELETE_PRODUCT_FULFILLED':
+      return {
+        ...state,
+        loading: false,
+        success: true,
+      }
+    case "RESET_SUCCESS":
+      return {
+        ...state,
+        success: null,
+      }
+    default:
+      return state;
+  }
+
+}
+

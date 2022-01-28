@@ -3,7 +3,7 @@ import Navbar from "../../component/navbar/Navbar";
 import "./productlist.css";
 import Slider from "@mui/material/Slider";
 import { IoColorFilterOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import ProductcardPrimary from "../../component/productcard-primary/ProductcardPrimary";
 import Pagination from "../../component/pagination/Pagination";
 import Footer from "../../component/footer/Footer";
@@ -35,7 +35,10 @@ const Productlist = () => {
     useSelector((state) => state.allproducts);
 
   const handleValueChange = (event) => {
-    setFilter({ ...filter, [event.target.name]: event.target.value });
+    setFilter({
+      ...filter,
+      [event.target.name]: event.target.value.toString(),
+    });
     console.log(filter);
   };
 

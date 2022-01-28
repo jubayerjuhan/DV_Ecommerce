@@ -25,6 +25,7 @@ import Myorders from "./PAGES/myorders/Myorders";
 import EditOrder from './PAGES/Admin_EditOrder/EditOrder.jsx';
 import Adminroutes from './utils/AdminRoutes.js'
 import Slide from './component/Slide/Slide.jsx';
+import ResetPassword from './PAGES/ResetPassword/ResetPassword.jsx';
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgotten-password" element={<Forgetpassword />} />
+          <Route path="/password/reset/:token" element={<ResetPassword />} />
           {/* <Route path="/swiper" element={<Slide />} /> */}
 
           {/* <Route path="/manage-product" element={<ManageProduct />} /> */}

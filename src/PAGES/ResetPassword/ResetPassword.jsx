@@ -8,23 +8,30 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Errordialog from "./../../component/errordialog/Errordialog";
 import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 import { useDispatch } from "react-redux";
-import { forgetPassword } from "../../actions/userActions.js";
+import { resetPassword } from "../../actions/userActions.js";
 import { useSelector } from "react-redux";
 import { toastError, toastSuccess } from "../../utils/toastify.js";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 const schema = yup.object({
-  email: yup
+  password: yup
     .string()
-    .email("Must be a valid email")
-    .max(255)
-    .required("Email is required"),
+    .min(5, "Password must be at least 8 characters")
+    .required("Field Is Required"),
+  confirmPassword: yup
+    .string()
+    .min(5, "Password must be at least 8 characters")
+    .required("Field Is Required"),
 });
 
-const Forgetpassword = () => {
+const ResetPassword = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { token } = useParams();
   const { success, message, error } = useSelector(
     (state) => state.forgetPassword
   );
+
   const {
     register,
     handleSubmit,
@@ -32,24 +39,25 @@ const Forgetpassword = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data, e) => {
-    e.preventDefault();
-    dispatch(forgetPassword(data));
+    console.log(token);
+    dispatch(resetPassword(data, token));
   };
 
-  if (success) {
-    toastSuccess(message);
-    dispatch({ type: "SUCCESS_RESET" });
+  if (error) {
+    toastError(error);
+    dispatch({ type: "CLEAR_ERROR" });
   }
 
-  if (error) {
-    toastError("Unknown Error");
+  if (success) {
+    toastSuccess("Password Changed Successfully");
+    dispatch({ type: "CLEAR_SUCCESS" });
+    navigate("/login");
   }
   return (
     <>
       <TitleHelmet title="Forget Password" />
 
       <Navbar />
-      <Errordialog />
       <div className="register__container section__full-padding">
         <div className="register__graphicside">
           <div className="register__graphicside__image">
@@ -57,12 +65,17 @@ const Forgetpassword = () => {
           </div>
         </div>
         <div className="register__form ">
-          <h1>Forget Password</h1>
+          <h1>Reset Password</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form__input">
-              <p>Email</p>
-              <input {...register("email")} />
-              <p className="error">{errors.email?.message}</p>
+              <p>New Password</p>
+              <input {...register("password")} />
+              <p className="error">{errors.password?.message}</p>
+            </div>
+            <div className="form__input">
+              <p>Retype New Password</p>
+              <input {...register("confirmPassword")} />
+              <p className="error">{errors.confirmPassword?.message}</p>
             </div>
 
             <input type="submit" className="btn btn-primary" />
@@ -74,4 +87,4 @@ const Forgetpassword = () => {
   );
 };
 
-export default Forgetpassword;
+export default ResetPassword;

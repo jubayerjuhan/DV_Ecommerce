@@ -85,3 +85,5 @@ export const getSingleProduct = (product_id) => async (dispatch) => {
     dispatch({ type: "SINGLE_PRODUCT_REJECTED", error: err.response.data.message || err.message })
   }
 }
+
+// delete cart product

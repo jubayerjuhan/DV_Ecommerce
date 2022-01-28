@@ -30,6 +30,8 @@ const Navbar = () => {
   const { isloggedin, user } = useSelector((state) => state.user);
   const [userbar, setUserbar] = React.useState(false);
 
+  const { cartItems } = useSelector((state) => state.cart);
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.reload();
@@ -86,9 +88,15 @@ const Navbar = () => {
           </div>
 
           <div className="navbar__icon-menu__btn">
-            <Link to="/cart">
-              <FaOpencart />
-            </Link>
+            <div className="cart__btn">
+              <div>
+                <p>{cartItems.length}</p>
+              </div>
+              <Link to="/cart">
+                <FaOpencart />
+              </Link>
+            </div>
+
             {isloggedin === true ? (
               <FaRegUserCircle onClick={() => setUserbar(!userbar)} />
             ) : (
