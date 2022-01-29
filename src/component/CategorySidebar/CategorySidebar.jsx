@@ -1,9 +1,16 @@
 import React from "react";
 import { Menu } from "../navbar/Navbar.jsx";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo-sec.svg";
 
 import "./categorysidebar.css";
+import { BsChevronRight } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+
 const CategorySidebar = () => {
+  const dispatch = useDispatch();
+  const handleCategory = (category) => {
+    dispatch({ type: "SET_CATEGORY", payload: category });
+  };
   return (
     <div className="category__sidebar-container ">
       <div className="category__logo">
@@ -12,7 +19,11 @@ const CategorySidebar = () => {
         </a>
       </div>
       <div className="menu">
-        <Menu />
+        <a href="/products" className="category__link">
+          <p>All Products</p>
+          <BsChevronRight />
+        </a>
+        <Menu handleCategory={handleCategory} chevron={true} />
       </div>
     </div>
   );

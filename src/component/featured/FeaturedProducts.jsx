@@ -20,12 +20,20 @@ const FeaturedProducts = ({ category }) => {
     error,
   } = useSelector((state) => state.adminProducts);
 
-  const products = [];
-  categoryProduct?.forEach((product) => {
-    if (product.category === category) {
-      products.push(product);
-    }
-  });
+  let products = [];
+
+  if (category !== "Trending Products") {
+    categoryProduct?.forEach((product) => {
+      if (product.category === category) {
+        products.push(product);
+      }
+    });
+  }
+
+  if (category === "Trending Products") {
+    products = categoryProduct;
+    products?.slice(0, 20);
+  }
 
   useEffect(() => {
     dispatch(getAdminProduct());
@@ -53,7 +61,7 @@ const FeaturedProducts = ({ category }) => {
           <div className="fp__container section__padding" id="featured">
             <div className="fp__container-section" id="featured">
               <div className="fp__products">
-                {products.slice(0, 5)?.map((product, i) => (
+                {products?.map((product, i) => (
                   <Link key={i} to={`/product/${product._id}`}>
                     <ProductcardPrimary product={product} />
                   </Link>

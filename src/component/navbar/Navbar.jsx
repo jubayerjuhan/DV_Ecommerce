@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../../assets/images/logo.svg";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { FaOpencart } from "react-icons/fa";
@@ -10,14 +10,15 @@ import { useSelector } from "react-redux";
 import { toastSuccess } from "./../../utils/toastify";
 import { useNavigate } from "react-router-dom";
 import { categories } from "../../PAGES/Admin_addproduct/Addproduct.jsx";
-export const Menu = () => (
+import { BsChevronRight } from "react-icons/bs";
+
+export const Menu = ({ handleCategory, chevron }) => (
   <>
     {categories.map((cate) => (
-      <>
-        <a href={`/products?category=${cate}`}>
-          <p>{cate}</p>
-        </a>
-      </>
+      <div className="category__link">
+        <p onClick={() => handleCategory(cate)}>{cate}</p>
+        {chevron && <BsChevronRight />}
+      </div>
     ))}
   </>
 );
@@ -51,6 +52,9 @@ const Navbar = () => {
     <>
       {isOpen && (
         <div className="navbar__mobile-menu slide-left">
+          <a href="/products" className="category__link">
+            <p>All Products</p>
+          </a>
           <Menu />
           <Link to="/login">
             <button className="navbar__mobile__button">Login</button>

@@ -69,7 +69,7 @@ const EditOrder = () => {
                     <img src={item.image} alt="" />
                     <div>
                       <p>{item.name}</p>
-                      <p>{`$${item.price}`}</p>
+                      <p>{`৳ ${item.price}`}</p>
                       <p>Quantity: {item.quantity}</p>
                     </div>
                   </div>
@@ -78,14 +78,14 @@ const EditOrder = () => {
             </div>
 
             <div className="edit__order-total">
-              <h2>Total: {`$${order.priceBreakdown.totalPrice}`}</h2>
+              <h2>Total: {`৳ ${order.priceBreakdown.totalPrice}`}</h2>
               <p>
                 <span>Subtotal: </span>
-                <span>{`$${order.priceBreakdown.subtotal}`}</span>
+                <span>{`৳ ${order.priceBreakdown.subtotal}`}</span>
               </p>
               <p>
                 <span>Shipping: </span>
-                <span>{`$${order.priceBreakdown.shippingCharge}`}</span>
+                <span>{`৳ ${order.priceBreakdown.shippingCharge}`}</span>
               </p>
             </div>
             {order.orderStatus !== "Delivered" && (

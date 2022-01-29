@@ -212,12 +212,13 @@
   background-color: var(--theme-blue);
   color: white;
 
-  a {
+  p {
+    text-align: center;
     color: rgb(211, 206, 206);
-    margin: 0.4rem 0;
+    margin: 0.9rem 0;
     font-family: var(--font-family);
     font-weight: 500;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 27px;
 
     &:hover {
@@ -234,6 +235,17 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 21px;
+  }
+}
+
+.category__link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  p {
+    width: 90%;
   }
 }
 

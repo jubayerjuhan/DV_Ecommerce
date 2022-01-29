@@ -63,3 +63,15 @@ export const deleteCartProduct = (state = {}, action) => {
 
 }
 
+export const selectedCategoryReducer = (state = {}, action) => {
+  console.log(action, 'action')
+  switch (action.type) {
+    case 'SET_CATEGORY':
+      return {
+        ...state,
+        selectedCategory: action.payload
+      }
+    default:
+      return state;
+  }
+}

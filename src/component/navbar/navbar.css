@@ -269,16 +269,17 @@
   color: white;
 }
 
-.navbar__mobile-menu a {
+.navbar__mobile-menu p {
+  text-align: center;
   color: #d3cece;
-  margin: 0.4rem 0;
+  margin: 0.9rem 0;
   font-family: var(--font-family);
   font-weight: 500;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 27px;
 }
 
-.navbar__mobile-menu a:hover {
+.navbar__mobile-menu p:hover {
   color: white;
 }
 
@@ -292,6 +293,23 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
+}
+
+.category__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.category__link p {
+  width: 90%;
 }
 
 @media (max-width: 1200px) {

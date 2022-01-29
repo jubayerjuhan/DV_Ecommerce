@@ -34,7 +34,7 @@ const Dashboard = () => {
           <div className="selling_info">
             <div className="dashboard__total">
               <h2>Total Sale</h2>
-              <p>{`$${Math.round(totalPrice)}`}</p>
+              <p>{`৳ ${Math.round(totalPrice)}`}</p>
             </div>
             <div className="dashboard__total">
               <h2>Product Available</h2>

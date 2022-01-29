@@ -70,7 +70,7 @@ const ManageOrder = () => {
     orders.forEach((order) => {
       rows.push({
         id: order._id,
-        orderPrice: `$${order.priceBreakdown.totalPrice}`,
+        orderPrice: `৳ ${order.priceBreakdown.totalPrice}`,
         orderStatus: order.orderStatus,
         paymentMethod: order.paymentInfo.status,
       });

@@ -3,6 +3,11 @@
   padding-left: 1rem;
 }
 
+.category__sidebar-container p {
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+
 .category__sidebar-container {
   position: fixed;
   max-width: 180px;

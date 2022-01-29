@@ -6,6 +6,8 @@
 }
 
 .homepage__container .sidebar {
+  background-color: var(--theme-blue);
+  color: white;
   border-right: 0.4px solid rgba(128, 128, 128, 0.541);
   -webkit-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
           box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

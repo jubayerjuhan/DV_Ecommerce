@@ -9,6 +9,7 @@ import { toastWarning } from "../../utils/toastify.js";
 import { useNavigate } from "react-router";
 import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 import { AiOutlineDelete } from "react-icons/ai";
+import cartEmpty from "../../assets/images/cartEmpty.svg";
 
 const Shoppingcart = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,10 @@ const Shoppingcart = () => {
 
       <Navbar />
       {cartItems.length === 0 ? (
-        <div>No Items On Cart</div>
+        <div className="notFound__page">
+          <img src={cartEmpty} alt="" />
+          <p>Your Cart is Empty</p>
+        </div>
       ) : (
         <>
           <Stepper activestep={0} />
@@ -81,7 +85,7 @@ const Shoppingcart = () => {
             <div className="shopping-cart__pricing">
               <div className="shopping-cart__pricing-subtotal">
                 <p>Subtotal</p>
-                <p>{`$${subtotal}`}</p>
+                <p>{`৳ ${subtotal}`}</p>
               </div>
               <div className="shopping-cart__pricing-tax">
                 <p>Shipping</p>
@@ -89,7 +93,7 @@ const Shoppingcart = () => {
               </div>
               <div className="shopping-cart__total">
                 <p>Total</p>
-                <p>{`$${shipping + subtotal}`}</p>
+                <p>{`৳ ${shipping + subtotal}`}</p>
               </div>
             </div>
 
@@ -142,10 +146,10 @@ const ShoppingcartItem = ({ item, handleDelete }) => {
       </div>
 
       <div className="cart-items__price">
-        <p>{`$${item.price}`}</p>
+        <p>{`৳ ${item.price}`}</p>
       </div>
       <div className="cart-items__total-price">
-        <p>{`$${(item.quantity * item.price).toFixed(2)}`}</p>
+        <p>{`৳ ${(item.quantity * item.price).toFixed(2)}`}</p>
       </div>
       <div
         className="cart-items__delete"

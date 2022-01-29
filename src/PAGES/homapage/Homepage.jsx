@@ -22,6 +22,7 @@ const Homepage = () => {
   const { loading: loadingAdminProduct } = useSelector(
     (state) => state.adminProducts
   );
+  const { selectedCategory } = useSelector((state) => state.selectedCategory);
   return (
     <>
       <TitleHelmet title="Dimvaji - Home" />
@@ -32,12 +33,9 @@ const Homepage = () => {
         <div className="homepage__main">
           <Navbar />
           <Bannerslider />
-          {/* <FeaturedProducts category="Sports" />
-          <FeaturedProducts category="Accessories" />
-          <FeaturedProducts category="Sports" /> */}
-          {categories.map((category) => (
-            <FeaturedProducts category={category} />
-          ))}
+          <FeaturedProducts
+            category={selectedCategory ? selectedCategory : "Trending Products"}
+          />
           <Hotsection />
           <Footerfeature />
 

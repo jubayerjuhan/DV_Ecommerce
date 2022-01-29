@@ -1,6 +1,11 @@
 .category__sidebar-container {
   padding-top: 2rem;
   padding-left: 1rem;
+
+  p {
+    padding: 0.5rem 0;
+    cursor: pointer;
+  }
 }
 .category__sidebar-container {
   position: fixed;

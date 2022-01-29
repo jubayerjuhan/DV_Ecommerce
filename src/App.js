@@ -29,7 +29,7 @@ import ResetPassword from './PAGES/ResetPassword/ResetPassword.jsx';
 
 
 function App() {
-  const [stripeKey, setStripeKey] = useState('');
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,24 +37,15 @@ function App() {
       dispatch(loadUser());
     }
 
-    const getStripeKey = async () => {
-      const { data } = await instance.get('/getStipePubKey');
-      setStripeKey(data.key);
-    }
-    getStripeKey();
-
   }, [dispatch]);
-  console.log(stripeKey)
-  const stripePromise = loadStripe('pk_test_51Jk944Kqk54qfeAmqK2cRxVVq122wVq5oMiAHWv0xEHXCjx362GhIJAiCkOCtjnfSVHGzMP7YSeVX6NQX4MuNASY00FJlGLuOo');
+
 
   return (
     <div className="App">
       <Router>
         <Routes>
           {/* checkout route */}
-          <Route path="/checkout" element={<Elements stripe={stripePromise} >
-            <Checkout />
-          </Elements>} />
+          <Route path="/checkout" element={<Checkout />} />
           {/* home page route */}
           <Route exact path="/" element={<Homepage />} />
 
@@ -65,9 +56,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgotten-password" element={<Forgetpassword />} />
           <Route path="/password/reset/:token" element={<ResetPassword />} />
-          {/* <Route path="/swiper" element={<Slide />} /> */}
-
-          {/* <Route path="/manage-product" element={<ManageProduct />} /> */}
 
           {/* private routes */}
           <Route element={<PrivateRoute />}>

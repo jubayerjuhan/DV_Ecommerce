@@ -9,7 +9,7 @@ const Horizontalproductcard = ({ product }) => {
       </div>
       <div className="hProductcard__info">
         <h2>{product?.name} </h2>
-        <p>{`$${product?.price}`}</p>
+        <p>{`৳ ${product?.price}`}</p>
       </div>
     </div>
   );

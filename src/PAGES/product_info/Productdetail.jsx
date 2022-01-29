@@ -73,7 +73,7 @@ const Productdetail = () => {
                   <h2>{product?.name}</h2>
                 </div>
                 <div className="product-detail__price">
-                  <p>{`$${product?.price}`}</p>
+                  <p>{`৳ ${product?.price}`}</p>
                 </div>
                 <div className="product-detail__quantity">
                   <p>Quantity</p>
