@@ -235,13 +235,7 @@
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
-  .navbar__searchbar {
-    display: none;
-  }
   .navbar__icon-menu__btn .navbar__sign-in {
-    display: none;
-  }
-  .navbar__container-menu {
     display: none;
   }
 }

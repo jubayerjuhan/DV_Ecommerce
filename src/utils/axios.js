@@ -10,8 +10,8 @@ if (localStorage.token) {
 
 
 export const authaxios = axios.create({
-  // baseURL: 'http://localhost:4000/api/v1',
-  baseURL: 'https://rocky-eyrie-75260.herokuapp.com/api/v1',
+  baseURL: 'http://localhost:4000/api/v1',
+  // baseURL: 'https://rocky-eyrie-75260.herokuapp.com/api/v1',
 
   headers: {
     authorization: `Bearer ${token ? `${token} ${expiry}` : ''} `,
@@ -21,8 +21,8 @@ export const authaxios = axios.create({
   }
 });
 export const instance = axios.create({
-  // baseURL: 'http://localhost:4000/api/v1',
-  baseURL: 'https://rocky-eyrie-75260.herokuapp.com/api/v1/',
+  baseURL: 'http://localhost:4000/api/v1',
+  // baseURL: 'https://rocky-eyrie-75260.herokuapp.com/api/v1/',
   headers: {
     "Access-Control-Allow-Origin": '*',
   }

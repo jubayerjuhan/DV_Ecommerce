@@ -36,7 +36,7 @@ const Homepage = () => {
           <FeaturedProducts
             category={selectedCategory ? selectedCategory : "Trending Products"}
           />
-          <Hotsection />
+          {/* <Hotsection /> */}
           <Footerfeature />
 
           <Footer />

@@ -118,8 +118,8 @@ const ShowBkashOption = ({
 }) => (
   <div className="bKash">
     <p>
-      Please Send {totalPrice} Taka To This bKash account and enter the
-      transection id down below.{" "}
+      Please Send {totalPrice.toFixed(2)} Taka To This bKash account and enter
+      the transection id down below.{" "}
     </p>
     <input
       type="text"

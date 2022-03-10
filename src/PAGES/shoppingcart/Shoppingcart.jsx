@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../component/navbar/Navbar";
 import Footer from "../../component/footer/Footer";
 import Stepper from "../../component/stepper/Stepper";
 import "./shoppingcart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemstoCart, deleteCartItem } from "../../actions/cartactions.js";
-import { toastWarning } from "../../utils/toastify.js";
+import { toastSuccess, toastWarning } from "../../utils/toastify.js";
 import { useNavigate } from "react-router";
 import TitleHelmet from "../../component/Helmet/Helmet.jsx";
 import { AiOutlineDelete } from "react-icons/ai";
 import cartEmpty from "../../assets/images/cartEmpty.svg";
+import { Button } from "@mui/material";
+import { authaxios } from "../../utils/axios.js";
 
 const Shoppingcart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [coupon, setCoupon] = useState("");
+  const [discount, setDiscount] = useState(0);
   const { cartItems } = useSelector((state) => state.cart);
   // const {}
 
@@ -32,7 +36,7 @@ const Shoppingcart = () => {
         subtotal,
         gst: 0,
         shippingCharge: shipping,
-        totalPrice: shipping + subtotal,
+        totalPrice: shipping + subtotal - discount,
       })
     );
     navigate("/checkout");
@@ -40,6 +44,23 @@ const Shoppingcart = () => {
 
   const handleDelete = (id) => {
     dispatch(deleteCartItem(id));
+  };
+
+  const validateCoupon = () => {
+    authaxios
+      .post("/validate-coupon", { coupon })
+      .then((res) => {
+        if (res.data.success) {
+          toastSuccess(res.data.message);
+          setDiscount(res.data.coupon.discount);
+        } else {
+          toastWarning(res.data.message);
+        }
+      })
+      .catch((err) => {
+        toastWarning("Coupon Not Valid");
+        setDiscount(0);
+      });
   };
   return (
     <>
@@ -83,17 +104,45 @@ const Shoppingcart = () => {
             </div>
 
             <div className="shopping-cart__pricing">
-              <div className="shopping-cart__pricing-subtotal">
-                <p>Subtotal</p>
-                <p>{`৳ ${subtotal}`}</p>
+              <div className="coupon">
+                <p>Apply Coupon</p>
+                <div className="couponInp">
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    onChange={(e) => setCoupon(e.target.value)}
+                  />
+                  <Button
+                    varient="text"
+                    sx={{
+                      backgroundColor: "white",
+                    }}
+                    onClick={validateCoupon}
+                  >
+                    Apply
+                  </Button>
+                </div>
               </div>
-              <div className="shopping-cart__pricing-tax">
-                <p>Shipping</p>
-                {shipping === 0 ? <h3>Free Shipping</h3> : ""}
-              </div>
-              <div className="shopping-cart__total">
-                <p>Total</p>
-                <p>{`৳ ${shipping + subtotal}`}</p>
+              <div className="cartPrice">
+                <div className="shopping-cart__pricing-subtotal">
+                  <p>Subtotal</p>
+                  <p>{`৳ ${subtotal.toFixed(2)}`}</p>
+                </div>
+                {discount && (
+                  <div className="shopping-cart__pricing-subtotal">
+                    <p>Coupon</p>
+                    <p>{`৳ -${discount}`}</p>
+                  </div>
+                )}
+                <div className="shopping-cart__pricing-tax">
+                  <p>Shipping</p>
+                  {shipping === 0 ? <h3>Free Shipping</h3> : ""}
+                </div>
+                <div className="shopping-cart__total">
+                  <p>Total</p>
+                  <p>{`৳ ${(shipping + subtotal - discount).toFixed(2)}`}</p>
+                </div>
               </div>
             </div>
 

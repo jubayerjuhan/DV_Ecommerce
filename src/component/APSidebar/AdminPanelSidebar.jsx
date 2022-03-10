@@ -9,6 +9,8 @@ const AdminPanelSidebar = () => {
     { title: "Manage Product", link: "/manage-product" },
     { title: "Add Product", link: "/add-product" },
     { title: "Manage Orders", link: "/manage-orders" },
+    { title: "Manage Kitchen", link: "/manage-kitchen" },
+    { title: "Manage Coupon", link: "/manage-coupon" },
   ];
   return (
     <div className="admin__panel-nav">

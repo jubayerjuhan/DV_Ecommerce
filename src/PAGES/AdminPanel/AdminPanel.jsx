@@ -8,12 +8,13 @@ import ManageOrder from "../Admin_ManageOrder/ManageOrder.jsx";
 import { useParams } from "react-router-dom";
 import Dashboard from "../Admin_Dashboard/Dashboard.jsx";
 import TitleHelmet from "../../component/Helmet/Helmet.jsx";
+import ManageKitchen from "../Manage_Kitchen/ManageKitchen.jsx";
+import ManageCoupon from "../Manage-Coupon/ManageCoupon.jsx";
 const AdminPanel = () => {
   const { name } = useParams();
   return (
     <>
       <TitleHelmet title="Admin Panel" />
-
       <div className="adminPanel__wrapper">
         <div className="adminPanel__container">
           <AdminPanelSidebar />
@@ -32,6 +33,8 @@ const ShowGui = ({ name }) => {
   if (name === "dashboard") return <Dashboard />;
   if (name === "manage-product") return <ManageProduct />;
   if (name === "manage-orders") return <ManageOrder />;
+  if (name === "manage-kitchen") return <ManageKitchen />;
+  if (name === "manage-coupon") return <ManageCoupon />;
   return <h1>404</h1>;
 };
 export default AdminPanel;
