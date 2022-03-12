@@ -1,6 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import Navbar from "../../component/navbar/Navbar";
@@ -11,10 +10,13 @@ import { toastSuccess, toastError } from "../../utils/toastify.js";
 import Spinner from "../../component/spinner/Spinner.jsx";
 import "./addproduct.css";
 import TitleHelmet from "../../component/Helmet/Helmet.jsx";
+import { Checkbox } from "@mui/material";
+import { authaxios } from "../../utils/axios.js";
 const Addproduct = () => {
   const [allimages, setAllimages] = React.useState("");
   const dispatch = useDispatch();
-
+  const [kitchen, setKitchen] = useState(true);
+  const [kitchens, setKitchens] = useState([]);
   const schema = yup
     .object({
       name: yup.string().required(),
@@ -23,8 +25,15 @@ const Addproduct = () => {
       category: yup.string().required(),
       subCategory: yup.string().required(),
       stock: yup.number().required(),
+      kitchen: yup.string(),
     })
     .required();
+
+  useEffect(() => {
+    authaxios.get("/kitchens").then((res) => {
+      setKitchens(res.data.kitchens);
+    });
+  }, []);
 
   const {
     handleSubmit,
@@ -59,6 +68,7 @@ const Addproduct = () => {
     formData.append("category", data.category);
     formData.append("subCategory", data.subCategory ? data.subCategory : null);
     formData.append("stock", data.stock);
+    formData.append("kitchen", data.kitchen);
     allimages.forEach((elem) => {
       formData.append("images", elem);
     });
@@ -119,6 +129,22 @@ const Addproduct = () => {
             </select>
             <p className="error">{errors.category && "Category Required"}</p>
           </div>
+          <Checkbox
+            checked={kitchen}
+            onChange={() => setKitchen(!kitchen)}
+            name="Kitchen"
+          />
+          <label htmlFor="checkbox">Kitchen Food?</label>
+          {kitchen && (
+            <div className="input__group">
+              <select {...register("kitchen")}>
+                <option value={null}>Select Kitchen</option>
+                {kitchens.map((kitchens) => (
+                  <option value={kitchens._id}>{kitchens.name}</option>
+                ))}
+              </select>
+            </div>
+          )}
           <div className="input__group">
             <p>Sub Category</p>
             <input {...register("subCategory")} />
