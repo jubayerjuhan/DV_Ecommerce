@@ -12,6 +12,27 @@
           justify-content: center;
 }
 
+.categoryWrapperSub {
+  margin-top: 1.2rem;
+}
+
+.subCategory {
+  cursor: pointer;
+}
+
+.subcategoryWrapperPat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+.subcategoryWrapperPat div {
+  border: 1px solid var(--theme-blue);
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+}
+
 .fp__container-heading {
   display: -webkit-box;
   display: -ms-flexbox;

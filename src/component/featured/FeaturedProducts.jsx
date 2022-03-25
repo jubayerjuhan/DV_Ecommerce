@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./featuredproducts.css";
 import { BsArrowRight } from "react-icons/bs";
@@ -19,6 +19,7 @@ const FeaturedProducts = ({ category }) => {
     loading,
     error,
   } = useSelector((state) => state.adminProducts);
+  const { selectedCategory } = useSelector((state) => state.selectedCategory);
 
   let products = [];
 
@@ -35,6 +36,9 @@ const FeaturedProducts = ({ category }) => {
     products?.slice(0, 20);
   }
 
+  console.log(products, "productsaaa");
+  const [selectedSub, setSelectedSub] = useState(null);
+
   useEffect(() => {
     dispatch(getAdminProduct());
   }, [dispatch]);
@@ -42,6 +46,8 @@ const FeaturedProducts = ({ category }) => {
   if (error) {
     toastError(error);
   }
+
+  console.log(selectedSub);
 
   return (
     <>
@@ -60,13 +66,42 @@ const FeaturedProducts = ({ category }) => {
         <>
           <div className="fp__container section__padding" id="featured">
             <div className="fp__container-section" id="featured">
-              <div className="fp__products">
-                {products?.map((product, i) => (
-                  <Link key={i} to={`/product/${product._id}`}>
-                    <ProductcardPrimary product={product} />
-                  </Link>
-                ))}
-              </div>
+              {selectedCategory !== "Patient Food Package" && (
+                <div className="fp__products">
+                  {products?.map((product, i) => (
+                    <Link key={i} to={`/product/${product._id}`}>
+                      <ProductcardPrimary product={product} />
+                    </Link>
+                  ))}
+                </div>
+              )}
+              {selectedCategory === "Patient Food Package" && (
+                <>
+                  <div className="subcategoryWrapperPat">
+                    <div
+                      className="subCategory"
+                      onClick={() => setSelectedSub("Day")}
+                    >
+                      <h2>Day</h2>
+                    </div>
+                    <div
+                      className="subCategory"
+                      onClick={() => setSelectedSub("Night")}
+                    >
+                      <h2>Night</h2>
+                    </div>
+                  </div>
+                  <div className="categoryWrapperSub">
+                    {products
+                      .filter((product) => product.subCategory === selectedSub)
+                      ?.map((product, i) => (
+                        <Link key={i} to={`/product/${product._id}`}>
+                          <ProductcardPrimary product={product} />
+                        </Link>
+                      ))}
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </>

@@ -11,12 +11,22 @@ import { toastSuccess } from "./../../utils/toastify";
 import { useNavigate } from "react-router-dom";
 import { categories } from "../../PAGES/Admin_addproduct/Addproduct.jsx";
 import { BsChevronRight } from "react-icons/bs";
+import { useDispatch } from "react-redux";
 
-export const Menu = ({ handleCategory, chevron }) => (
+export const Menu = ({ handleCategory, setOpen, chevron }) => (
   <>
     {categories.map((cate) => (
       <div className="category__link">
-        <p onClick={() => handleCategory(cate)}>{cate}</p>
+        <p
+          onClick={() => {
+            handleCategory(cate);
+            {
+              setOpen && setOpen(false);
+            }
+          }}
+        >
+          {cate}
+        </p>
         {chevron && <BsChevronRight />}
       </div>
     ))}
@@ -24,6 +34,7 @@ export const Menu = ({ handleCategory, chevron }) => (
 );
 const Navbar = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
   console.log(location);
   const navigate = useNavigate();
   const [isOpen, setOpen] = React.useState(false);
@@ -48,6 +59,9 @@ const Navbar = () => {
     navigate("/products?searchkeyword=" + keyword);
   };
 
+  const handleCategory = (category) => {
+    dispatch({ type: "SET_CATEGORY", payload: category });
+  };
   return (
     <>
       {isOpen && (
@@ -55,7 +69,7 @@ const Navbar = () => {
           <a href="/products" className="category__link">
             <p>All Products</p>
           </a>
-          <Menu />
+          <Menu handleCategory={handleCategory} setOpen={setOpen} />
           <Link to="/login">
             <button className="navbar__mobile__button">Login</button>
           </Link>

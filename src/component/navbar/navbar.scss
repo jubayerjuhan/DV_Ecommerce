@@ -184,7 +184,29 @@
   }
 
   .navbar__searchbar {
-    // display: none;
+    form {
+      font-size: 0.9rem;
+      width: 120px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+    }
+    input[type="search"] {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px 0px 0px 5px;
+
+      padding: 0 5px;
+      background: #ffffff;
+      border: 2px solid #f6f7fb;
+      border-right: none;
+      outline: none;
+      margin: 0 !important;
+
+      font-family: var(--font-family);
+      font-size: 13px;
+      line-height: 27px;
+    }
   }
 
   .navbar__icon-menu__btn {

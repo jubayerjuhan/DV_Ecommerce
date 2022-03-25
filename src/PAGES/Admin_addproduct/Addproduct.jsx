@@ -138,7 +138,9 @@ const Addproduct = () => {
           {kitchen && (
             <div className="input__group">
               <select {...register("kitchen")}>
-                <option value={null}>Select Kitchen</option>
+                <option value={"623b536967493d5f5fa10ad6"}>
+                  Select Kitchen
+                </option>
                 {kitchens.map((kitchens) => (
                   <option value={kitchens._id}>{kitchens.name}</option>
                 ))}
