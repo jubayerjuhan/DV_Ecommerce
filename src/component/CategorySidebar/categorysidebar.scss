@@ -22,6 +22,17 @@
   }
 }
 
+.category__sidebar-container p {
+  // padding: 0px;
+  font-size: 14px;
+}
+.category__sidebar-container a {
+  padding: 0px;
+}
+
 .category__logo {
   margin: 1rem 0;
+  img {
+    width: 100%;
+  }
 }

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/dimvajiLogo.png";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { FaOpencart } from "react-icons/fa";
 import "./navbar.css";

@@ -36,6 +36,16 @@
   line-height: 36px;
 }
 
+.footer__right-section_links-container .footer__left-section,
+.footer__right-section_newsletter .footer__left-section {
+  display: none;
+}
+
+.footer__right-section_links-container .footer__left-section .logo,
+.footer__right-section_newsletter .footer__left-section .logo {
+  height: 80px;
+}
+
 .footer__right-section_links-container p,
 .footer__right-section_links-container a,
 .footer__right-section_newsletter p,

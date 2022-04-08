@@ -5,7 +5,7 @@ import "./footer.css";
 import { BsArrowRight } from "react-icons/bs";
 import { AiOutlinePhone } from "react-icons/ai";
 import { FiMail } from "react-icons/fi";
-import logo from "../../assets/images/logo-sec.svg";
+import logo from "../../assets/images/dimvajiLogo.png";
 import {
   TiSocialFacebook,
   TiSocialInstagram,
@@ -16,7 +16,14 @@ const Footer = () => {
   return (
     <div className="footer__container section__padding">
       <div className="footer__left-section">
-        <img src={logo} alt="" />
+        <img
+          src={logo}
+          alt=""
+          className="logo"
+          style={{
+            maxHeight: "80px",
+          }}
+        />
         <div className="footer__left-section-contact">
           <h5>Contacts</h5>
           <div className="contacts__wrapper">

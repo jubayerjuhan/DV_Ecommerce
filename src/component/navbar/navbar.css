@@ -314,6 +314,12 @@
   line-height: 21px;
 }
 
+.navbar__logo-active img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 80px;
+}
+
 .category__link {
   display: -webkit-box;
   display: -ms-flexbox;

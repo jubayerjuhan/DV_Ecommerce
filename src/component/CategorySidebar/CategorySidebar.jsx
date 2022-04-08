@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu } from "../navbar/Navbar.jsx";
-import logo from "../../assets/images/logo-sec.svg";
+import logo from "../../assets/images/dimvajiLogo.png";
 
 import "./categorysidebar.css";
 import { BsChevronRight } from "react-icons/bs";
@@ -21,6 +21,10 @@ const CategorySidebar = () => {
       <div className="menu">
         <a href="/products" className="category__link">
           <p>All Products</p>
+          <BsChevronRight />
+        </a>
+        <a href="/kitchens" className="category__link">
+          <p>Kitchens</p>
           <BsChevronRight />
         </a>
         <Menu handleCategory={handleCategory} chevron={true} />

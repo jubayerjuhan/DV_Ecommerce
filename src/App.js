@@ -26,6 +26,8 @@ import EditOrder from './PAGES/Admin_EditOrder/EditOrder.jsx';
 import Adminroutes from './utils/AdminRoutes.js'
 import Slide from './component/Slide/Slide.jsx';
 import ResetPassword from './PAGES/ResetPassword/ResetPassword.jsx';
+import Kitchens from './PAGES/Kitchens/Kitchens.jsx';
+import KitchenProduct from './PAGES/KitchenProduct/KitchenProduct.jsx';
 
 
 function App() {
@@ -54,6 +56,8 @@ function App() {
           <Route path="/product/:id" element={<Productdetail />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/kitchens" element={<Kitchens />} />
+          <Route path="/kitchens-product/:id" element={<KitchenProduct />} />
           <Route path="/forgotten-password" element={<Forgetpassword />} />
           <Route path="/password/reset/:token" element={<ResetPassword />} />
 

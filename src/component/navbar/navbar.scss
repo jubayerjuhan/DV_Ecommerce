@@ -260,6 +260,12 @@
   }
 }
 
+.navbar__logo-active {
+  img {
+    object-fit: contain;
+    height: 80px;
+  }
+}
 .category__link {
   display: flex;
   justify-content: space-between;

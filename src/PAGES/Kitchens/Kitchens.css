@@ -1,0 +1,23 @@
+.kitchen__card {
+  width: 200px;
+}
+
+.kitchen__card img {
+  width: 100%;
+  height: 200px;
+}
+
+.kitchen__card p {
+  text-align: center;
+  margin-top: 5px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.kitchen__all {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20px;
+}
+/*# sourceMappingURL=Kitchens.css.map */

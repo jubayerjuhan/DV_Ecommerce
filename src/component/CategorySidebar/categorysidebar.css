@@ -28,7 +28,19 @@
   margin-top: 2rem;
 }
 
+.category__sidebar-container p {
+  font-size: 14px;
+}
+
+.category__sidebar-container a {
+  padding: 0px;
+}
+
 .category__logo {
   margin: 1rem 0;
+}
+
+.category__logo img {
+  width: 100%;
 }
 /*# sourceMappingURL=categorysidebar.css.map */
