@@ -41,7 +41,6 @@ const Kitchens = () => {
             ))}
           </div>
           <Footerfeature />
-
           <Footer />
         </div>
       </div>

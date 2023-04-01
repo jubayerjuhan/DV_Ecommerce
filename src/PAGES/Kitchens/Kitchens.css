@@ -19,5 +19,7 @@
   display: -ms-flexbox;
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
+
 /*# sourceMappingURL=Kitchens.css.map */

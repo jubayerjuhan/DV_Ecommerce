@@ -1,46 +1,42 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import './App.css';
+import "./App.css";
 import Homepage from "./PAGES/homapage/Homepage";
 import Notfound from "./PAGES/notfound/Notfound";
-import Productlist from './PAGES/product list/Productlist.jsx';
-import Productdetail from './PAGES/product_info/Productdetail.jsx';
+import Productlist from "./PAGES/product list/Productlist.jsx";
+import Productdetail from "./PAGES/product_info/Productdetail.jsx";
 import Shoppingcart from "./PAGES/shoppingcart/Shoppingcart";
-import Checkout from "./PAGES/checkout/Checkout"
+import Checkout from "./PAGES/checkout/Checkout";
 import Checkoutcomplete from "./PAGES/checkoutcomplete/Checkoutcomplete";
-import Signup from './PAGES/signup/Signup.jsx';
-import Login from './PAGES/login/Login.jsx';
-import Forgetpassword from './PAGES/forgetpassword/Forgotpassword.jsx';
-import AdminPanel from './PAGES/AdminPanel/AdminPanel'
-import ManageProduct from './PAGES/ManageProduct/ManageProduct.jsx'
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loadUser } from './actions/userActions.js';
-import Addproduct from './PAGES/Admin_addproduct/Addproduct.jsx';
-import { instance } from './utils/axios.js';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+import Signup from "./PAGES/signup/Signup.jsx";
+import Login from "./PAGES/login/Login.jsx";
+import Forgetpassword from "./PAGES/forgetpassword/Forgotpassword.jsx";
+import AdminPanel from "./PAGES/AdminPanel/AdminPanel";
+import ManageProduct from "./PAGES/ManageProduct/ManageProduct.jsx";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { loadUser } from "./actions/userActions.js";
+import Addproduct from "./PAGES/Admin_addproduct/Addproduct.jsx";
+import { instance } from "./utils/axios.js";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import PrivateRoute from "./utils/Privateroute";
 import Myorders from "./PAGES/myorders/Myorders";
-import EditOrder from './PAGES/Admin_EditOrder/EditOrder.jsx';
-import Adminroutes from './utils/AdminRoutes.js'
-import Slide from './component/Slide/Slide.jsx';
-import ResetPassword from './PAGES/ResetPassword/ResetPassword.jsx';
-import Kitchens from './PAGES/Kitchens/Kitchens.jsx';
-import KitchenProduct from './PAGES/KitchenProduct/KitchenProduct.jsx';
-
+import EditOrder from "./PAGES/Admin_EditOrder/EditOrder.jsx";
+import Adminroutes from "./utils/AdminRoutes.js";
+import Slide from "./component/Slide/Slide.jsx";
+import ResetPassword from "./PAGES/ResetPassword/ResetPassword.jsx";
+import Kitchens from "./PAGES/Kitchens/Kitchens.jsx";
+import KitchenProduct from "./PAGES/KitchenProduct/KitchenProduct.jsx";
 
 function App() {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem("token")) {
       dispatch(loadUser());
     }
-
   }, [dispatch]);
-
 
   return (
     <div className="App">
