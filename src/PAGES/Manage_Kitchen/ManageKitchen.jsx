@@ -60,7 +60,8 @@ const ManageKitchen = () => {
   };
   const handleSubmit = () => {
     authaxios.post("/kitchen/add", formdata, config).then((res) => {
-      console.log(res);
+      setOpen(false)
+      alert("Kitchen Added")
     });
   };
 
