@@ -54,7 +54,7 @@ const Footer = () => {
       <div className="footer__right-section">
         <div className="footer__right-section_links-container">
           <h5>Product Links</h5>
-          <Menu></Menu>
+          <Menu handleCategory={() => { }}></Menu>
         </div>
         <div className="footer__right-section_links-container">
           <h5>Company</h5>

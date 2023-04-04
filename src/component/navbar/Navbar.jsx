@@ -13,25 +13,32 @@ import { categories } from "../../PAGES/Admin_addproduct/Addproduct.jsx";
 import { BsChevronRight } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 
-export const Menu = ({ handleCategory, setOpen, chevron }) => (
-  <>
-    {categories.map((cate) => (
-      <div className="category__link">
-        <p
-          onClick={() => {
-            handleCategory(cate);
-            {
+export const Menu = ({ handleCategory, setOpen, chevron }) => {
+  const navigate = useNavigate()
+
+  return (
+    <>
+      {categories.map((category) => (
+        <div className="category__link">
+          <p
+            onClick={() => {
+              if (window.location.pathname !== "/") {
+                navigate("/")
+                window.scroll(0, 400)
+              }
+              if (handleCategory)
+                handleCategory(category);
               setOpen && setOpen(false);
-            }
-          }}
-        >
-          {cate}
-        </p>
-        {chevron && <BsChevronRight />}
-      </div>
-    ))}
-  </>
-);
+            }}
+          >
+            {category}
+          </p>
+          {chevron && <BsChevronRight />}
+        </div>
+      ))}
+    </>
+  )
+};
 const Navbar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -142,9 +149,7 @@ const Navbar = () => {
             <button onClick={handleLogout}>Logout</button>
           </div>
         )}
-        {/* <div className="navbar__container-menu ">
-          <Menu></Menu>
-        </div> */}
+
       </div>
     </>
   );
